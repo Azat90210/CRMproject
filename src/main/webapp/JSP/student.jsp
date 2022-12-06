@@ -29,7 +29,7 @@
 </div>
 <div class="content-box">
     <a href="studentProgress.html" class="action-button">Посмотреть успеваемость</a>
-    <a href="studentCreating.html" class="action-button"><img class="prefix-button" src="../resources/img/add.png"
+    <a href="/student_creat" class="action-button"><img class="prefix-button" src="../resources/img/add.png"
                                                               width="18px" alt="">Добавить нового студента</a>
     <table class="students-table">
         <tr>
