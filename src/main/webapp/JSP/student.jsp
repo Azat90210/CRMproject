@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!doctype html>
 <html lang="en">
 <head>
@@ -22,8 +23,8 @@
 <hr>
 <div class="navigation-box">
     <a href="/home" class="gradient-button">Главная</a>
-    <a href="students.html" class="gradient-button">Студенты</a>
-    <a href="disciplines.html" class="gradient-button">Дисциплины</a>
+    <a href="/student" class="gradient-button">Студенты</a>
+    <a href="/disciplin" class="gradient-button">Дисциплины</a>
     <a href="terms.html" class="gradient-button">Семестры</a>
     <a href="" class="gradient-button">Контакты</a>
 </div>
@@ -45,7 +46,7 @@
                 <td>${s.surname}</td>
                 <td>${s.name}</td>
                 <td>${s.group}-1</td>
-                <td>${s.data_enter}</td>
+                <td><fmt:formatDate pattern="dd/MM/yyyy" value="${s.data_enter}" />/td>
                 <td display="inline">
                     <a class="editing-box-button" href=""><img src="../resources/img/pencil.png" width="18px" alt=""></a>
                     <a class="trashing-box-button" href=""><img src="../resources/img/trash.png" width="18px" alt=""></a>
