@@ -1,6 +1,7 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!doctype html>
 <html lang="en">
 <head>
@@ -33,40 +34,20 @@
   <h3>Список дисциплин</h3>
   <table>
     <tr>
-      <td display="inline">
-        Системный анализ
-        <a class="editing-box-button-small" href=""><img src="../resources/img/pencil.png"  width="12px" alt=""></a>
-        <a class="trashing-box-button-small" href=""><img src="../resources/img/trash.png" width="12px" alt=""></a>
-      </td>
+      <th>Дисциплина</th>
     </tr>
-    <tr>
-      <td display="inline">
-        Информатика
-        <a class="editing-box-button-small" href=""><img src="../resources/img/pencil.png"  width="12px" alt=""></a>
-        <a class="trashing-box-button-small" href=""><img src="../resources/img/trash.png" width="12px" alt=""></a>
-      </td>
-    </tr>
-    <tr>
-      <td display="inline">
-        Приближенное исчисление
-        <a class="editing-box-button-small" href=""><img src="../resources/img/pencil.png"  width="12px" alt=""></a>
-        <a class="trashing-box-button-small" href=""><img src="../resources/img/trash.png" width="12px" alt=""></a>
-      </td>
-    </tr>
-    <tr>
-      <td display="inline">
-        Математический анализ
-        <a class="editing-box-button-small" href=""><img src="../resources/img/pencil.png"  width="12px" alt=""></a>
-        <a class="trashing-box-button-small" href=""><img src="../resources/img/trash.png" width="12px" alt=""></a>
-      </td>
-    </tr>
-    <tr>
-      <td display="inline">
-        Дифференциальные уравнения
-        <a class="editing-box-button-small" href=""><img src="../resources/img/pencil.png"  width="12px" alt=""></a>
-        <a class="trashing-box-button-small" href=""><img src="../resources/img/trash.png" width="12px" alt=""></a>
-      </td>
-    </tr>
+    <c:forEach items="${allDisciplin}" var="s">
+      <tr>
+        <td>${s.name}</td>
+        <td display="inline">
+          <a class="editing-box-button" href=""><img src="../resources/img/pencil.png" width="18px" alt=""></a>
+          <a class="trashing-box-button" href=""><img src="../resources/img/trash.png" width="18px" alt=""></a>
+        </td>
+      </tr>
+    </c:forEach>
+
+
+
   </table>
 </div>
 <footer>

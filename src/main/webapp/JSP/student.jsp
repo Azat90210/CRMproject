@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib prefix="C" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -39,10 +39,10 @@
             <th>Имя</th>
             <th>Группа</th>
             <th>Дата поступления</th>
-            <th></th>
+
         </tr>
 
-        <C:forEach items="${allStudents}" var="s">
+        <c:forEach items="${allStudents}" var="s">
             <tr>
                 <td>${s.surname}</td>
                 <td>${s.name}</td>
@@ -53,7 +53,7 @@
                     <a class="trashing-box-button" href=""><img src="../resources/img/trash.png" width="18px" alt=""></a>
                 </td>
             </tr>
-        </C:forEach>
+        </c:forEach>
 
     </table>
 </div>

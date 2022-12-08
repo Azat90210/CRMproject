@@ -1,5 +1,6 @@
 package Db;
 
+import entity.Disciplin;
 import entity.Student;
 
 import java.sql.Connection;
@@ -36,6 +37,29 @@ public class DBManager implements IDBManager {
         return res;
     }
 
+    @Override
+    public ArrayList<Disciplin> getAllDisciplin() {
+        ArrayList<Disciplin> res = new ArrayList<>();
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/crm_student_4", "root", "admin");
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("select * from `discipline` where status = 1");
+            while (rs.next()) {
+                Disciplin d = new Disciplin();
+                d.setId((rs.getInt("id")));
+                d.setName((rs.getString("name")));
+                res.add(d);
+            }
+            System.out.println(rs.getInt(1) + "  " + rs.getString(2) + "  " + rs.getString(3));
+            con.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return res;
+    }
+
 
     @Override
     public void studentCreating(String lastName, String firstName, String groupName, String registrationDate) {
@@ -46,14 +70,10 @@ public class DBManager implements IDBManager {
             Statement stmt = con.createStatement();
             stmt.execute("INSERT INTO `student` (`surname`, `name`, `group`, `status`, `data_enter`) " +
                     "VALUES ('"+lastName+"', '"+firstName+"', '"+groupName+"', '1',  '"+registrationDate+"')");
-
-
             con.close();
         } catch (Exception e) {
             System.out.println(e);
         }
-
-
     }
 }
 
