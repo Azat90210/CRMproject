@@ -9,6 +9,7 @@ public interface IDBManager {
     ArrayList <Student> getAllStudent();
     ArrayList <Disciplin> getAllDisciplin();
     void studentCreating(String lastName, String firstName, String groupName, String registrationDate);
+    void disciplinCreating(String disciplinName);
 }
 
 

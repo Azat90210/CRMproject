@@ -75,5 +75,20 @@ public class DBManager implements IDBManager {
             System.out.println(e);
         }
     }
+
+    @Override
+    public void disciplinCreating(String disciplinName) {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/crm_student_4", "root", "admin");
+            Statement stmt = con.createStatement();
+            stmt.execute("INSERT INTO `discipline` (`name`, `status`) " +
+                    "VALUES ('"+disciplinName+"', '1')");
+            con.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
 }
 

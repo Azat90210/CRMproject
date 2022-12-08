@@ -30,7 +30,7 @@
   <a href="" class="gradient-button">Контакты</a>
 </div>
 <div class="content-box">
-  <a href="disciplineCreating.html" class="action-button"><img class="prefix-button" src="../resources/img/add.png"  width="18px" alt="">Создать дисциплину</a>
+  <a href="/disciplin_creat" class="action-button"><img class="prefix-button" src="../resources/img/add.png"  width="18px" alt="">Создать дисциплину</a>
   <h3>Список дисциплин</h3>
   <table>
     <tr>
