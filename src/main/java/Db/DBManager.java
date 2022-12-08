@@ -44,9 +44,10 @@ public class DBManager implements IDBManager {
             Connection con = DriverManager.getConnection(
                     "jdbc:mysql://localhost:3306/crm_student_4", "root", "admin");
             Statement stmt = con.createStatement();
-            ResultSet rs = stmt.execute("INSERT INTO `crm_student_4`.`student` (`surname`, `name`, `group`, `data_enter`) VALUES ('"+lastName+"', '"+firstName+"', '"+groupName+"', '"+registrationDate+"')");
+            stmt.execute("INSERT INTO `student` (`surname`, `name`, `group`, `status`, `data_enter`) " +
+                    "VALUES ('"+lastName+"', '"+firstName+"', '"+groupName+"', '1',  '"+registrationDate+"')");
 
-            System.out.println(rs.getInt(1) + "  " + rs.getString(2) + "  " + rs.getString(3));
+
             con.close();
         } catch (Exception e) {
             System.out.println(e);

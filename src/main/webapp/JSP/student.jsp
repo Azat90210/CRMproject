@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="C" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -45,8 +46,8 @@
             <tr>
                 <td>${s.surname}</td>
                 <td>${s.name}</td>
-                <td>${s.group}-1</td>
-                <td><fmt:formatDate pattern="dd/MM/yyyy" value="${s.data_enter}" />/td>
+                <td>${s.group}</td>
+                <td><fmt:formatDate pattern="dd/MM/yyyy" value="${s.data_enter}" /></td>
                 <td display="inline">
                     <a class="editing-box-button" href=""><img src="../resources/img/pencil.png" width="18px" alt=""></a>
                     <a class="trashing-box-button" href=""><img src="../resources/img/trash.png" width="18px" alt=""></a>
