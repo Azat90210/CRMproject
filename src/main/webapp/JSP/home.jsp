@@ -29,8 +29,8 @@
 <div class="navigation-box">
   <a href="/home" class="gradient-button">Главная</a>
   <a href="/student" class="gradient-button">Студенты</a>
-  <a href="disciplines.html" class="gradient-button">Дисциплины</a>
-  <a href="terms.html" class="gradient-button">Семестры</a>
+  <a href="/disciplin" class="gradient-button">Дисциплины</a>
+  <a href="/term" class="gradient-button">Семестры</a>
   <a href="" class="gradient-button">Контакты</a>
 </div>
 <div class="grade-box">

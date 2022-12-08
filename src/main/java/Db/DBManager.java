@@ -2,6 +2,7 @@ package Db;
 
 import entity.Disciplin;
 import entity.Student;
+import entity.Term;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -51,6 +52,30 @@ public class DBManager implements IDBManager {
                 d.setId((rs.getInt("id")));
                 d.setName((rs.getString("name")));
                 res.add(d);
+            }
+            System.out.println(rs.getInt(1) + "  " + rs.getString(2) + "  " + rs.getString(3));
+            con.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return res;
+    }
+
+    @Override
+    public ArrayList<Term> getAllTerm() {
+        ArrayList<Term> res = new ArrayList<>();
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/crm_student_4", "root", "admin");
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("select * from `term`");
+            while (rs.next()) {
+                Term t = new Term();
+                t.setId((rs.getInt("id")));
+                t.setName((rs.getString("name")));
+                t.setDuration((rs.getInt("duration")));
+                res.add(t);
             }
             System.out.println(rs.getInt(1) + "  " + rs.getString(2) + "  " + rs.getString(3));
             con.close();
