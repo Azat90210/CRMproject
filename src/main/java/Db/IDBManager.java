@@ -12,6 +12,9 @@ public interface IDBManager {
     ArrayList <Term> getAllTerm();
     void studentCreating(String lastName, String firstName, String groupName, String registrationDate);
     void disciplinCreating(String disciplinName);
+
+    void deleteStudent(String ids);
+    void deleteDisciplin(String ids);
 }
 
 

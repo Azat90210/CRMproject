@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!doctype html>
 <html lang="en">
@@ -10,6 +10,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="../resources/styles/styles.css">
+    <script src="../resources/js/function.js"></script>
 </head>
 <body>
 <div class="title-box">
@@ -32,24 +33,31 @@
 <div class="content-box">
     <a href="studentProgress.html" class="action-button">Посмотреть успеваемость</a>
     <a href="/student_creat" class="action-button"><img class="prefix-button" src="../resources/img/add.png"
-                                                              width="18px" alt="">Добавить нового студента</a>
+                                                        width="18px" alt="">Добавить нового студента</a>
+    <a href="#" class="action-button" onclick="deleteStudents()"><img class="prefix-button"
+                                                                      src="../resources/img/trash.png"
+                                                                      width="18px" alt="">Удалить студента</a>
     <table class="students-table">
         <tr>
+            <th></th>
             <th>Фамилия</th>
             <th>Имя</th>
             <th>Группа</th>
             <th>Дата поступления</th>
-
         </tr>
 
         <c:forEach items="${allStudents}" var="s">
             <tr>
+                <th>
+                    <input type="checkbox" value="${s.id}" name="idStudent">
+                </th>
                 <td>${s.surname}</td>
                 <td>${s.name}</td>
                 <td>${s.group}</td>
-                <td><fmt:formatDate pattern="dd/MM/yyyy" value="${s.data_enter}" /></td>
+                <td><fmt:formatDate pattern="dd/MM/yyyy" value="${s.data_enter}"/></td>
                 <td display="inline">
-                    <a class="editing-box-button" href=""><img src="../resources/img/pencil.png" width="18px" alt=""></a>
+                    <a class="editing-box-button" href=""><img src="../resources/img/pencil.png" width="18px"
+                                                               alt=""></a>
                     <a class="trashing-box-button" href=""><img src="../resources/img/trash.png" width="18px" alt=""></a>
                 </td>
             </tr>
@@ -57,6 +65,9 @@
 
     </table>
 </div>
+<form action="/student_delete" method="post" id="deleteStudentForm">
+    <input type="hidden" id="deleteStudentHidden" name="idStudent">
+</form>
 <footer>
     Copy 2022
 </footer>

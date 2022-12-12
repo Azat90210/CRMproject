@@ -115,5 +115,35 @@ public class DBManager implements IDBManager {
             System.out.println(e);
         }
     }
+
+    @Override
+    public void deleteStudent(String ids) {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/crm_student_4", "root", "admin");
+            Statement stmt = con.createStatement();
+            stmt.execute("UPDATE `student` SET `status` = '0' WHERE (`id` in("+ ids +"));");
+            stmt.execute("DELETE from `student` WHERE (`id` in("+ ids +"));");
+            con.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    @Override
+    public void deleteDisciplin(String ids) {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/crm_student_4", "root", "admin");
+            Statement stmt = con.createStatement();
+            stmt.execute("UPDATE `discipline` SET `status` = '0' WHERE (`id` in("+ ids +"));");
+            stmt.execute("DELETE from `discipline` WHERE (`id` in("+ ids +"));");
+            con.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
 }
 
