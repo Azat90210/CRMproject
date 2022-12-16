@@ -86,6 +86,8 @@ public class DBManager implements IDBManager {
     }
 
 
+
+
     @Override
     public void studentCreating(String lastName, String firstName, String groupName, String registrationDate) {
         try {
@@ -145,5 +147,7 @@ public class DBManager implements IDBManager {
             System.out.println(e);
         }
     }
+
+
 }
 

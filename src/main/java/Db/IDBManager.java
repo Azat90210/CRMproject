@@ -15,6 +15,7 @@ public interface IDBManager {
 
     void deleteStudent(String ids);
     void deleteDisciplin(String ids);
+
 }
 
 
