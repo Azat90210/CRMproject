@@ -1,6 +1,7 @@
 package Db;
 
 import entity.Disciplin;
+import entity.News;
 import entity.Student;
 import entity.Term;
 
@@ -36,6 +37,87 @@ public class DBManager implements IDBManager {
             System.out.println(e);
         }
         return res;
+    }
+
+    @Override
+    public ArrayList<Student> progressStudent(String ids) {
+        ArrayList<Student> res = new ArrayList<>();
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/crm_student_4", "root", "admin");
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("select * from `student` where status = 1");
+            while (rs.next()) {
+                Student s = new Student();
+                s.setId((rs.getInt("id")));
+                s.setName((rs.getString("name")));
+                s.setSurname((rs.getString("surname")));
+                s.setGroup((rs.getString("group")));
+
+                s.setData_enter(rs.getDate("data_enter"));
+                res.add(s);
+            }
+            System.out.println(rs.getInt(1) + "  " + rs.getString(2) + "  " + rs.getString(3));
+            con.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return res;
+    }
+
+    @Override
+    public void newsCreating(String newsName, String news) {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/crm_student_4", "root", "admin");
+            Statement stmt = con.createStatement();
+            stmt.execute("INSERT INTO `new` (`name`, `text`,`status`) " +
+                    "VALUES ('"+newsName+"','"+news+"', '1')");
+            con.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    @Override
+    public ArrayList<News> getAllNews() {
+        ArrayList<News> res = new ArrayList<>();
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/crm_student_4", "root", "admin");
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("select * from `new`");
+            while (rs.next()) {
+                News t = new News();
+                t.setId((rs.getInt("id")));
+                t.setName((rs.getString("name")));
+                t.setText((rs.getString("text")));
+                res.add(t);
+            }
+            System.out.println(rs.getInt(1) + "  " + rs.getString(2) + "  " + rs.getString(3));
+            con.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return res;
+    }
+
+    @Override
+    public void deleteNews(String ids) {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/crm_student_4", "root", "admin");
+            Statement stmt = con.createStatement();
+            stmt.execute("UPDATE `new` SET `status` = '0' WHERE (`id` in("+ ids +"));");
+            stmt.execute("DELETE from `new` WHERE (`id` in("+ ids +"));");
+            con.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
 
     @Override
@@ -147,6 +229,8 @@ public class DBManager implements IDBManager {
             System.out.println(e);
         }
     }
+
+
 
 
 }

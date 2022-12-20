@@ -1,6 +1,7 @@
 package Db;
 
 import entity.Disciplin;
+import entity.News;
 import entity.Student;
 import entity.Term;
 
@@ -15,6 +16,10 @@ public interface IDBManager {
 
     void deleteStudent(String ids);
     void deleteDisciplin(String ids);
+    ArrayList <Student> progressStudent(String ids);
+    void newsCreating(String newsName, String news);
+    ArrayList <News> getAllNews();
+    void deleteNews(String ids);
 
 }
 

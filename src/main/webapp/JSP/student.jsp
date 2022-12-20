@@ -31,7 +31,7 @@
     <a href="" class="gradient-button">Контакты</a>
 </div>
 <div class="content-box">
-    <a href="/student_progress" class="action-button">Посмотреть успеваемость</a>
+    <a href="#" class="action-button" onclick="progressStudent()">Посмотреть успеваемость</a>
     <a href="/student_creat" class="action-button"><img class="prefix-button" src="../resources/img/add.png"
                                                         width="18px" alt="">Добавить нового студента</a>
     <a href="#" class="action-button" onclick="deleteStudents()"><img class="prefix-button"
@@ -67,6 +67,9 @@
 </div>
 <form action="/student_delete" method="post" id="deleteStudentForm">
     <input type="hidden" id="deleteStudentHidden" name="idStudent">
+</form>
+<form action="/student_progress" method="post" id="progressStudentForm">
+    <input type="hidden" id="progressStudentHidden" name="idStudent">
 </form>
 <footer>
     Copy 2022

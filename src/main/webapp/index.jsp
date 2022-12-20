@@ -27,7 +27,7 @@
     <a href="" class="gradient-button">Контакты</a>
 </div>
 <div class="grade-box">
-    <a href="newsCreating.html" class="action-button" ><img class="prefix-button" src="../resources/img/add.png"  width="18px" alt="">Добавить объявление</a>
+    <a href="/news_creat" class="action-button" ><img class="prefix-button" src="../resources/img/add.png"  width="18px" alt="">Добавить объявление</a>
 </div>
 <div class="content-box">
     <div class="inline-box">
