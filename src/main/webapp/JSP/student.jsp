@@ -68,7 +68,7 @@
 <form action="/student_delete" method="post" id="deleteStudentForm">
     <input type="hidden" id="deleteStudentHidden" name="idStudent">
 </form>
-<form action="/student_progress" method="post" id="progressStudentForm">
+<form action="/student_progress" method="get" id="progressStudentForm">
     <input type="hidden" id="progressStudentHidden" name="idStudent">
 </form>
 <footer>

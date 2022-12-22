@@ -34,17 +34,14 @@ function deleteDisciplin(){
 
 function progressStudent(){
     var checkedCheckboxs = document.querySelectorAll('input[name=idStudent]:checked')
-    if(checkedCheckboxs.length == 0){
-        alert("Выберите хотя бы одного студента!")
+    if(checkedCheckboxs.length != 1 ){
+        alert("Выберите только одного студента!")
         return;
     }
     // "1 2 5 7" - string
-    var ids = ""
-    for(var i = 0; i < checkedCheckboxs.length; i++){
-        ids = ids + checkedCheckboxs[i].value + ",";
-    }
-    ids = ids.substring(0, ids.length - 1);
-    document.getElementById("progressStudentHidden").value = ids;
+    var id = checkedCheckboxs[0].value;
+
+    document.getElementById("progressStudentHidden").value = id;
     document.getElementById('progressStudentForm').submit();
 }
 

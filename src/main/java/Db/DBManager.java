@@ -1,9 +1,6 @@
 package Db;
 
-import entity.Disciplin;
-import entity.News;
-import entity.Student;
-import entity.Term;
+import entity.*;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -39,32 +36,7 @@ public class DBManager implements IDBManager {
         return res;
     }
 
-    @Override
-    public ArrayList<Student> progressStudent(String ids) {
-        ArrayList<Student> res = new ArrayList<>();
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection con = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/crm_student_4", "root", "admin");
-            Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("select * from `student` where status = 1");
-            while (rs.next()) {
-                Student s = new Student();
-                s.setId((rs.getInt("id")));
-                s.setName((rs.getString("name")));
-                s.setSurname((rs.getString("surname")));
-                s.setGroup((rs.getString("group")));
 
-                s.setData_enter(rs.getDate("data_enter"));
-                res.add(s);
-            }
-            System.out.println(rs.getInt(1) + "  " + rs.getString(2) + "  " + rs.getString(3));
-            con.close();
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-        return res;
-    }
 
     @Override
     public void newsCreating(String newsName, String news) {
@@ -120,6 +92,7 @@ public class DBManager implements IDBManager {
         }
     }
 
+
     @Override
     public ArrayList<Disciplin> getAllDisciplin() {
         ArrayList<Disciplin> res = new ArrayList<>();
@@ -143,29 +116,7 @@ public class DBManager implements IDBManager {
         return res;
     }
 
-    @Override
-    public ArrayList<Term> getAllTerm() {
-        ArrayList<Term> res = new ArrayList<>();
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection con = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/crm_student_4", "root", "admin");
-            Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("select * from `term`");
-            while (rs.next()) {
-                Term t = new Term();
-                t.setId((rs.getInt("id")));
-                t.setName((rs.getString("name")));
-                t.setDuration((rs.getInt("duration")));
-                res.add(t);
-            }
-            System.out.println(rs.getInt(1) + "  " + rs.getString(2) + "  " + rs.getString(3));
-            con.close();
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-        return res;
-    }
+
 
 
 
@@ -230,7 +181,89 @@ public class DBManager implements IDBManager {
         }
     }
 
+    @Override
+    public Student getStudentById(String ids) {
+       Student s = new Student();
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/crm_student_4", "root", "admin");
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("select * from `student` where `status` = 1 and `id` = " + ids );
+            while (rs.next()) {
+                s.setId((rs.getInt("id")));
+                s.setName((rs.getString("name")));
+                s.setSurname((rs.getString("surname")));
+                s.setGroup((rs.getString("group")));
+                s.setData_enter(rs.getDate("data_enter"));
+            }
+            System.out.println(rs.getInt(1) + "  " + rs.getString(2) + "  " + rs.getString(3));
+            con.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return s;
+    }
 
+    @Override
+    public ArrayList<Term> getTermbyIdStudent(String ids) {
+        ArrayList<Term> res = new ArrayList<>();
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/crm_student_4", "root", "admin");
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("select distinct t.* from term t\n" +
+                    "join term_discipline td on t.id = td.id_term\n" +
+                    "join student_termdiscipline_mark stm on td.id = stm.id_termDiscipline\n" +
+                    "and stm.id_student = " + ids);
+            while (rs.next()) {
+                Term t = new Term();
+                t.setId((rs.getInt("id")));
+                t.setName((rs.getString("name")));
+                t.setDuration((rs.getInt("duration")));
+                res.add(t);
+            }
+            System.out.println(rs.getInt(1) + "  " + rs.getString(2) + "  " + rs.getString(3));
+            con.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return res;
+    }
+
+
+    @Override
+    public ArrayList<DisciplineMark> getDisciplineMarkbyTerm(Term term, String ids) {
+        ArrayList<DisciplineMark> res = new ArrayList<>();
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/crm_student_4", "root", "admin");
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("select distinct d.*, m.name as mark from term t\n" +
+                    "join term_discipline td on t.id = td.id_term\n" +
+                    "join student_termdiscipline_mark stm \n" +
+                    "on td.id = stm.id_termDiscipline\n" +
+                    "and stm.id_student = " + ids + "\n" +
+                    "join discipline d on d.id = td.id_discipline\n" +
+                    "join mark m on m.id = stm.id_mark\n" +
+                    "where td.id_term = " + term.getId());
+            while (rs.next()) {
+                DisciplineMark t = new DisciplineMark();
+                t.setId((rs.getInt("id")));
+                t.setName((rs.getString("name")));
+                t.setStatus((rs.getByte("status")));
+                t.setMark((rs.getString("mark")));
+                res.add(t);
+            }
+            System.out.println(rs.getInt(1) + "  " + rs.getString(2) + "  " + rs.getString(3));
+            con.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return res;
+    }
 
 
 }

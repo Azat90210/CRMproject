@@ -1,25 +1,34 @@
 package Db;
 
-import entity.Disciplin;
-import entity.News;
-import entity.Student;
-import entity.Term;
+import entity.*;
 
 import java.util.ArrayList;
 
 public interface IDBManager {
-    ArrayList <Student> getAllStudent();
-    ArrayList <Disciplin> getAllDisciplin();
-    ArrayList <Term> getAllTerm();
+    ArrayList<Student> getAllStudent();
+
+    ArrayList<Disciplin> getAllDisciplin();
+
+
+
     void studentCreating(String lastName, String firstName, String groupName, String registrationDate);
+
     void disciplinCreating(String disciplinName);
 
     void deleteStudent(String ids);
+
     void deleteDisciplin(String ids);
-    ArrayList <Student> progressStudent(String ids);
+
     void newsCreating(String newsName, String news);
-    ArrayList <News> getAllNews();
+
+    ArrayList<News> getAllNews();
+
     void deleteNews(String ids);
+
+    Student getStudentById(String ids);
+
+    ArrayList<DisciplineMark> getDisciplineMarkbyTerm(Term term, String ids);
+    ArrayList<Term> getTermbyIdStudent(String ids);
 
 }
 

@@ -13,10 +13,7 @@ import java.util.ArrayList;
 public class TermController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException  {
-        DBManager manager = new DBManager();
-        ArrayList<Term> allTerm = manager.getAllTerm();
-        req.setAttribute("allTerm", allTerm);
-        req.getRequestDispatcher("JSP/term.jsp").forward(req, resp);
+
     }
 
 
