@@ -78,6 +78,30 @@ public class DBManager implements IDBManager {
     }
 
     @Override
+    public ArrayList<Term> getAllTerm() {
+        ArrayList<Term> res = new ArrayList<>();
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/crm_student_4", "root", "admin");
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("select * from `term`");
+            while (rs.next()) {
+                Term t = new Term();
+                t.setId((rs.getInt("id")));
+                t.setName((rs.getString("name")));
+                t.setId((rs.getInt("duration")));
+                res.add(t);
+            }
+            System.out.println(rs.getInt(1) + "  " + rs.getString(2) + "  " + rs.getString(3));
+            con.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return res;
+    }
+
+    @Override
     public void deleteNews(String ids) {
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -115,11 +139,6 @@ public class DBManager implements IDBManager {
         }
         return res;
     }
-
-
-
-
-
 
     @Override
     public void studentCreating(String lastName, String firstName, String groupName, String registrationDate) {
@@ -222,6 +241,33 @@ public class DBManager implements IDBManager {
                 t.setId((rs.getInt("id")));
                 t.setName((rs.getString("name")));
                 t.setDuration((rs.getInt("duration")));
+                res.add(t);
+            }
+            System.out.println(rs.getInt(1) + "  " + rs.getString(2) + "  " + rs.getString(3));
+            con.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return res;
+    }
+
+    @Override
+    public ArrayList<Disciplin> getDisciplineByTerm(Term term) {
+        ArrayList<Disciplin> res = new ArrayList<>();
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/crm_student_4", "root", "admin");
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("select distinct d.* from term t\n" +
+                    "join term_discipline td on t.id = td.id_term\n" +
+                    "join discipline d on d.id = td.id_discipline\n" +
+                    "where td.id_term =" + term.getId());
+            while (rs.next()) {
+                Disciplin t = new Disciplin();
+                t.setId((rs.getInt("id")));
+                t.setName((rs.getString("name")));
+                t.setStatus((rs.getByte("status")));
                 res.add(t);
             }
             System.out.println(rs.getInt(1) + "  " + rs.getString(2) + "  " + rs.getString(3));

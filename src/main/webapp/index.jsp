@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -6,7 +7,8 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href= "../resources/styles/styles.css">
+    <link rel="stylesheet" href="../resources/styles/styles.css">
+
 </head>
 <body>
 <div class="title-box">
@@ -26,52 +28,17 @@
     <a href="/term" class="gradient-button">Семестры</a>
     <a href="" class="gradient-button">Контакты</a>
 </div>
-<div class="grade-box">
-    <a href="/news_creat" class="action-button" ><img class="prefix-button" src="../resources/img/add.png"  width="18px" alt="">Добавить объявление</a>
-</div>
-<div class="content-box">
-    <div class="inline-box">
-        <h1 display="inline">
-            Выходные дни
-            <a class="editing-box-button" href=""><img src="../resources/img/pencil.png"  width="18px" alt=""></a>
-            <a class="trashing-box-button" href=""><img src="../resources/img/trash.png" width="18px" alt=""></a>
-        </h1>
+
+
+    <div class="content-box">
+        <div class="inline-box">
+            <h1 display="inline">
+                Добро пожаловать!
+            </h1>
+        </div>
+
     </div>
-    С 28 декабря 2022 года по 9 января 2023 года объявляются выходные дни
-</div>
-<div class="content-box">
-    <div class="inline-box">
-        <h1 display="inline">
-            Начало экзаменационной сессии
-            <a class="editing-box-button" href=""><img  src="../resources/img/pencil.png"  width="18px" alt=""></a>
-            <a class="trashing-box-button" href=""><img src="../resources/img/trash.png" width="18px" alt=""></a>
-        </h1>
-    </div>
-    Экзамены начинаются с 12 января 2023 года
-    <br>
-    Расписание можно узнать у преподавателей
-    <br>
-</div>
-<div class="content-box">
-    <div class="inline-box">
-        <h1 display="inline">
-            Успейте сдать долги по зачетам
-            <a class="editing-box-button" href=""><img src="../resources/img/pencil.png"  width="18px" alt=""></a>
-            <a class="trashing-box-button" href=""><img src="../resources/img/trash.png" width="18px" alt=""></a>
-        </h1>
-    </div>
-    Те кто не успеют вовремя закрыть зачетную сессию не будут допущены к экзаменам
-</div>
-<div class="content-box">
-    <div class="inline-box">
-        <h1 display="inline">
-            Список на отчисление
-            <a class="editing-box-button" href=""><img src="../resources/img/pencil.png"  width="18px" alt=""></a>
-            <a class="trashing-box-button" href=""><img src="../resources/img/trash.png" width="18px" alt=""></a>
-        </h1>
-    </div>
-    Список претендентов на отчисление вывешен на доске объявлений в деканате
-</div>
+
 <footer>
     Copy 2022
 </footer>

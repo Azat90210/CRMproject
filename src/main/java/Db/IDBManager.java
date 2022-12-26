@@ -8,8 +8,8 @@ public interface IDBManager {
     ArrayList<Student> getAllStudent();
 
     ArrayList<Disciplin> getAllDisciplin();
-
-
+    ArrayList<News> getAllNews();
+    ArrayList<Term> getAllTerm();
 
     void studentCreating(String lastName, String firstName, String groupName, String registrationDate);
 
@@ -18,17 +18,15 @@ public interface IDBManager {
     void deleteStudent(String ids);
 
     void deleteDisciplin(String ids);
+    void deleteNews(String ids);
 
     void newsCreating(String newsName, String news);
-
-    ArrayList<News> getAllNews();
-
-    void deleteNews(String ids);
 
     Student getStudentById(String ids);
 
     ArrayList<DisciplineMark> getDisciplineMarkbyTerm(Term term, String ids);
     ArrayList<Term> getTermbyIdStudent(String ids);
+    ArrayList<Disciplin> getDisciplineByTerm(Term term);
 
 }
 

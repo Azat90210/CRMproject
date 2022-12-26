@@ -1,7 +1,5 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -31,33 +29,25 @@
     <a href="" class="gradient-button">Контакты</a>
 </div>
 <div class="grade-box">
-    <a href="/news_creat" class="action-button"><img class="prefix-button" src="../resources/img/add.png"
-                                                     width="18px" alt="">Добавить объявление</a>
+    <a href="/news_creat" class="action-button"><img class="prefix-button" src="../resources/img/add.png" width="18px"
+                                                     alt="">Добавить объявление</a>
     <a href="#" class="action-button" onclick="deleteNews()"><img class="prefix-button"
-                                                                  src="../resources/img/trash.png"
-                                                                  width="18px" alt="">Удалить объявление</a>
+                                                                      src="../resources/img/trash.png"
+                                                                      width="18px" alt="">Удалить объявление</a>
 </div>
-<div class="content-box">
-<table>
-    <tr>
-        <th></th>
-        <th>Заголовок</th>
-        <th>Текст</th>
-    </tr>
-
-    <c:forEach items="${allNews}" var="s">
-        <tr>
-            <th>
+<c:forEach items="${allNews}" var="s">
+    <div class="content-box">
+        <div class="inline-box">
+            <h1 display="inline">
                 <input type="checkbox" value="${s.id}" name="idNews">
-            </th>
-
-            <td>${s.name}</td>
-            <td>${s.text}</td>
-        </tr>
-    </c:forEach>
-
-</table>
-</div>
+                ${s.name}
+                <a class="editing-box-button" href=""><img src="../resources/img/pencil.png" width="18px" alt=""></a>
+                <a class="trashing-box-button" href=""><img src="../resources/img/trash.png" width="18px" alt=""></a>
+            </h1>
+        </div>
+        ${s.text}
+    </div>
+</c:forEach>
 <form action="/news_delete" method="post" id="deleteNewsForm">
     <input type="hidden" id="deleteNewsHidden" name="idNews">
 </form>
