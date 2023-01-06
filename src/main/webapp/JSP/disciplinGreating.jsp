@@ -13,7 +13,13 @@
 <div class="title-box">
   <div class="title-item">
     <h1>СИСТЕМА УПРАВЛЕНИЯ СТУДЕНТАМИ И ИХ УСПЕВАЕМОСТЬЮ</h1>
+    <a href="/logout" class="gradient-button">Выйти</a>
   </div>
+
+  <div class="title-box">
+    ${RoleName.firstName} ${RoleName.lastName} <br> ${RoleName.name}
+  </div>
+
   <div class="title-login">
     <a href="" class="gradient-button-leftside">Войти</a>
     <a href="" class="gradient-button-rightside">Регистрация</a>

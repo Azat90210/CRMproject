@@ -165,8 +165,20 @@ footer{
     border-collapse: inherit;
 }
 
+.login-table{
+    width: 50px;
+    font-size: 20px;
+    text-align: left;
+    margin: 1%;
+    padding: 1%;
+    border: 1px solid black;
+    border-radius: 10px;
+    border-collapse: inherit;
+}
+
 .news-table{
     width: 700px;
+    height: 100px;
     font-size: 20px;
     text-align: left;
     margin: 1%;
@@ -266,3 +278,4 @@ footer{
     vertical-align: middle;
     padding-right: 5px;
 }
+

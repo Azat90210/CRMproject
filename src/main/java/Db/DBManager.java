@@ -37,7 +37,6 @@ public class DBManager implements IDBManager {
     }
 
 
-
     @Override
     public void newsCreating(String newsName, String news) {
         try {
@@ -46,7 +45,7 @@ public class DBManager implements IDBManager {
                     "jdbc:mysql://localhost:3306/crm_student_4", "root", "admin");
             Statement stmt = con.createStatement();
             stmt.execute("INSERT INTO `new` (`name`, `text`,`status`) " +
-                    "VALUES ('"+newsName+"','"+news+"', '1')");
+                    "VALUES ('" + newsName + "','" + news + "', '1')");
             con.close();
         } catch (Exception e) {
             System.out.println(e);
@@ -108,8 +107,8 @@ public class DBManager implements IDBManager {
             Connection con = DriverManager.getConnection(
                     "jdbc:mysql://localhost:3306/crm_student_4", "root", "admin");
             Statement stmt = con.createStatement();
-            stmt.execute("UPDATE `new` SET `status` = '0' WHERE (`id` in("+ ids +"));");
-            stmt.execute("DELETE from `new` WHERE (`id` in("+ ids +"));");
+            stmt.execute("UPDATE `new` SET `status` = '0' WHERE (`id` in(" + ids + "));");
+            stmt.execute("DELETE from `new` WHERE (`id` in(" + ids + "));");
             con.close();
         } catch (Exception e) {
             System.out.println(e);
@@ -148,7 +147,7 @@ public class DBManager implements IDBManager {
                     "jdbc:mysql://localhost:3306/crm_student_4", "root", "admin");
             Statement stmt = con.createStatement();
             stmt.execute("INSERT INTO `student` (`surname`, `name`, `group`, `status`, `data_enter`) " +
-                    "VALUES ('"+lastName+"', '"+firstName+"', '"+groupName+"', '1',  '"+registrationDate+"')");
+                    "VALUES ('" + lastName + "', '" + firstName + "', '" + groupName + "', '1',  '" + registrationDate + "')");
             con.close();
         } catch (Exception e) {
             System.out.println(e);
@@ -163,7 +162,7 @@ public class DBManager implements IDBManager {
                     "jdbc:mysql://localhost:3306/crm_student_4", "root", "admin");
             Statement stmt = con.createStatement();
             stmt.execute("INSERT INTO `discipline` (`name`, `status`) " +
-                    "VALUES ('"+disciplinName+"', '1')");
+                    "VALUES ('" + disciplinName + "', '1')");
             con.close();
         } catch (Exception e) {
             System.out.println(e);
@@ -177,8 +176,8 @@ public class DBManager implements IDBManager {
             Connection con = DriverManager.getConnection(
                     "jdbc:mysql://localhost:3306/crm_student_4", "root", "admin");
             Statement stmt = con.createStatement();
-            stmt.execute("UPDATE `student` SET `status` = '0' WHERE (`id` in("+ ids +"));");
-            stmt.execute("DELETE from `student` WHERE (`id` in("+ ids +"));");
+            stmt.execute("UPDATE `student` SET `status` = '0' WHERE (`id` in(" + ids + "));");
+            stmt.execute("DELETE from `student` WHERE (`id` in(" + ids + "));");
             con.close();
         } catch (Exception e) {
             System.out.println(e);
@@ -192,8 +191,8 @@ public class DBManager implements IDBManager {
             Connection con = DriverManager.getConnection(
                     "jdbc:mysql://localhost:3306/crm_student_4", "root", "admin");
             Statement stmt = con.createStatement();
-            stmt.execute("UPDATE `discipline` SET `status` = '0' WHERE (`id` in("+ ids +"));");
-            stmt.execute("DELETE from `discipline` WHERE (`id` in("+ ids +"));");
+            stmt.execute("UPDATE `discipline` SET `status` = '0' WHERE (`id` in(" + ids + "));");
+            stmt.execute("DELETE from `discipline` WHERE (`id` in(" + ids + "));");
             con.close();
         } catch (Exception e) {
             System.out.println(e);
@@ -202,13 +201,13 @@ public class DBManager implements IDBManager {
 
     @Override
     public Student getStudentById(String ids) {
-       Student s = new Student();
+        Student s = new Student();
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection(
                     "jdbc:mysql://localhost:3306/crm_student_4", "root", "admin");
             Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("select * from `student` where `status` = 1 and `id` = " + ids );
+            ResultSet rs = stmt.executeQuery("select * from `student` where `status` = 1 and `id` = " + ids);
             while (rs.next()) {
                 s.setId((rs.getInt("id")));
                 s.setName((rs.getString("name")));
@@ -311,6 +310,91 @@ public class DBManager implements IDBManager {
         return res;
     }
 
+    @Override
+    public ArrayList<Role> getAllRole() {
+        ArrayList<Role> res = new ArrayList<>();
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/crm_student_4", "root", "admin");
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("select * from role where status = 1; ");
+            while (rs.next()) {
+                Role t = new Role();
+                t.setId((rs.getInt("id")));
+                t.setName((rs.getString("name")));
+                t.setStatus((rs.getByte("status")));
+                res.add(t);
+            }
+            System.out.println(rs.getInt(1) + "  " + rs.getString(2) + "  " + rs.getString(3));
+            con.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return res;
+    }
 
+    @Override
+    public boolean isLogin(String login, String password, String idRole) {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/crm_student_4", "root", "admin");
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("select * from user u \n" +
+                    "join user_role ur on u.id = ur.id_user\n" +
+                    "where login = '" + login + "' and password = '" + password + "' and ur.id_role = '" + idRole + "';");
+            while (rs.next()) {
+                return true;
+            }
+            con.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return false;
+    }
+
+    @Override
+    public UserRole getUser(String login) {
+        UserRole res = new UserRole();
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/crm_student_4", "root", "admin");
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("select * from user u \n" +
+                    "join user_role ur on u.id = ur.id_user\n" +
+                    "join role r on r.id = ur.id_role\n" +
+                    "where login = '" + login + "';");
+            while (rs.next()) {
+
+                res.setId((rs.getInt("id")));
+                res.setName((rs.getString("name")));
+                res.setFirstName((rs.getString("firstName")));
+                res.setLastName((rs.getString("lastName")));
+                res.setStatus((rs.getByte("status")));
+
+            }
+            System.out.println(rs.getInt(1) + "  " + rs.getString(2) + "  " + rs.getString(3));
+            con.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return res;
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

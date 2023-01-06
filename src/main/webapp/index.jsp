@@ -16,7 +16,7 @@
         <h1>СИСТЕМА УПРАВЛЕНИЯ СТУДЕНТАМИ И ИХ УСПЕВАЕМОСТЬЮ</h1>
     </div>
     <div class="title-login">
-        <a href="" class="gradient-button-leftside">Войти</a>
+        <a href="/login" class="gradient-button-leftside">Войти</a>
         <a href="" class="gradient-button-rightside">Регистрация</a>
     </div>
 </div>

@@ -16,11 +16,19 @@
 <div class="title-box">
     <div class="title-item">
         <h1>СИСТЕМА УПРАВЛЕНИЯ СТУДЕНТАМИ И ИХ УСПЕВАЕМОСТЬЮ</h1>
+        <a href="/logout" class="gradient-button">Выйти</a>
     </div>
-    <div class="title-login">
-        <a href="" class="gradient-button-leftside">Войти</a>
-        <a href="" class="gradient-button-rightside">Регистрация</a>
+
+    <div class="title-box">
+        ${RoleName.firstName} ${RoleName.lastName} <br> ${RoleName.name}
     </div>
+
+    <c:if test="${isLogin !=1}">
+        <div class="title-login">
+            <a href="" class="gradient-button-leftside">Войти</a>
+            <a href="" class="gradient-button-rightside">Регистрация</a>
+        </div>
+    </c:if>
 </div>
 <hr>
 <div class="navigation-box">
@@ -31,12 +39,18 @@
     <a href="" class="gradient-button">Контакты</a>
 </div>
 <div class="content-box">
-    <a href="#" class="action-button" onclick="progressStudent()">Посмотреть успеваемость</a>
-    <a href="/student_creat" class="action-button"><img class="prefix-button" src="../resources/img/add.png"
-                                                        width="18px" alt="">Добавить нового студента</a>
-    <a href="#" class="action-button" onclick="deleteStudents()"><img class="prefix-button"
-                                                                      src="../resources/img/trash.png"
-                                                                      width="18px" alt="">Удалить студента</a>
+
+<c:if test="${RoleId!=3}">
+        <a href="#" class="action-button" onclick="progressStudent()">Посмотреть успеваемость</a>
+</c:if>
+    <c:if test="${RoleId==1}">
+        <a href="/student_creat" class="action-button"><img class="prefix-button" src="../resources/img/add.png"
+                                                            width="18px" alt="">Добавить нового студента</a>
+
+        <a href="#" class="action-button" onclick="deleteStudents()"><img class="prefix-button"
+                                                                          src="../resources/img/trash.png"
+                                                                          width="18px" alt="">Удалить студента</a>
+    </c:if>
     <table class="students-table">
         <tr>
             <th></th>
@@ -58,7 +72,8 @@
                 <td display="inline">
                     <a class="editing-box-button" href=""><img src="../resources/img/pencil.png" width="18px"
                                                                alt=""></a>
-                    <a class="trashing-box-button" href=""><img src="../resources/img/trash.png" width="18px" alt=""></a>
+                    <a class="trashing-box-button" href=""><img src="../resources/img/trash.png" width="18px"
+                                                                alt=""></a>
                 </td>
             </tr>
         </c:forEach>

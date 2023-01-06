@@ -15,11 +15,19 @@
 <div class="title-box">
     <div class="title-item">
         <h1>СИСТЕМА УПРАВЛЕНИЯ СТУДЕНТАМИ И ИХ УСПЕВАЕМОСТЬЮ</h1>
+        <a href="/logout" class="gradient-button">Выйти</a>
     </div>
-    <div class="title-login">
-        <a href="" class="gradient-button-leftside">Войти</a>
-        <a href="" class="gradient-button-rightside">Регистрация</a>
+
+    <div class="title-box">
+        ${RoleName.firstName} ${RoleName.lastName} <br> ${RoleName.name}
     </div>
+
+    <c:if test="${isLogin !=1}">
+        <div class="title-login">
+            <a href="" class="gradient-button-leftside">Войти</a>
+            <a href="" class="gradient-button-rightside">Регистрация</a>
+        </div>
+    </c:if>
 </div>
 <hr>
 <div class="navigation-box">
@@ -30,12 +38,15 @@
     <a href="" class="gradient-button">Контакты</a>
 </div>
 <div class="content-box">
-    <a href="/disciplin_creat" class="action-button"><img class="prefix-button" src="../resources/img/add.png"
-                                                          width="18px" alt="">Создать дисциплину</a>
-    <a href="#" class="action-button" onclick="deleteDisciplin()"><img class="prefix-button"
-                                                                                       src="../resources/img/trash.png"
-                                                                                       width="18px" alt="">Удалить
-        дисциплину</a>
+    <c:if test="${RoleId==1}">
+        <a href="/disciplin_creat" class="action-button"><img class="prefix-button" src="../resources/img/add.png"
+                                                              width="18px" alt="">Создать дисциплину</a>
+        <a href="#" class="action-button" onclick="deleteDisciplin()"><img class="prefix-button"
+                                                                           src="../resources/img/trash.png"
+                                                                           width="18px" alt="">Удалить
+            дисциплину</a>
+    </c:if>
+
     <h3>Список дисциплин</h3>
     <table class="students-table">
         <tr>

@@ -28,6 +28,26 @@ public interface IDBManager {
     ArrayList<Term> getTermbyIdStudent(String ids);
     ArrayList<Disciplin> getDisciplineByTerm(Term term);
 
+    ArrayList<Role> getAllRole();
+    boolean isLogin (String login, String password, String idRole);
+
+    UserRole getUser(String login);
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
