@@ -307,15 +307,12 @@ public class DBManager implements IDBManager {
             Connection con = DriverManager.getConnection(
                     "jdbc:mysql://localhost:3306/crm_student_4", "root", "admin");
             Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("select distinct d.*, d.name as disciplineName from term_discipline td\n" +
+            ResultSet rs = stmt.executeQuery("select distinct d.name as disciplineName from term_discipline td\n" +
                     "join term t on td.id_term = t.id\n" +
                     "join discipline d on td.id_discipline = d.id\n" +
                     "where td.id_term = " + term.getId());
             while (rs.next()) {
                 TermDiscipline t = new TermDiscipline();
-//                t.setId((rs.getInt("id")));
-//                t.setTermName((rs.getString("termName")));
-//                t.setDuration((rs.getByte("duration")));
                 t.setDisciplineName((rs.getString("disciplineName")));
                 res.add(t);
             }
