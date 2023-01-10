@@ -23,7 +23,7 @@
     </div>
 
     <div class="title-box">
-            ${RoleName.firstName} ${RoleName.lastName} <br> ${RoleName.name}
+            ${FirstName} ${LastName} <br> ${RoleName}
     </div>
 
 </c:if>

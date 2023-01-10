@@ -26,12 +26,15 @@ public interface IDBManager {
 
     ArrayList<DisciplineMark> getDisciplineMarkbyTerm(Term term, String ids);
     ArrayList<Term> getTermbyIdStudent(String ids);
-    ArrayList<Disciplin> getDisciplineByTerm(Term term);
+
+    Term getTermId(String ids);
+    ArrayList<Term> getTermbyId(String idTerm);
+    ArrayList <TermDiscipline> getDisciplineByTerm(Term term, String idTerm);
 
     ArrayList<Role> getAllRole();
     boolean isLogin (String login, String password, String idRole);
 
-    UserRole getUser(String login);
+    UserRole getUser(String login, String roleId);
 
 }
 

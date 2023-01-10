@@ -18,10 +18,10 @@
     </div>
 
     <div class="title-box">
-        ${RoleName.firstName} ${RoleName.lastName} <br> ${RoleName.name}
+        ${FirstName} ${LastName} <br> ${RoleName}
     </div>
 
-    <c:if  test="${isLogin !=1}">
+    <c:if test="${isLogin !=1}">
         <div class="title-login">
             <a href="" class="gradient-button-leftside">Войти</a>
             <a href="" class="gradient-button-rightside">Регистрация</a>
@@ -36,50 +36,49 @@
     <a href="/term" class="gradient-button">Семестры</a>
     <a href="" class="gradient-button">Контакты</a>
 </div>
-<c:if test="${termNull != '1'}">
-    <form action="/term" method="get" id="terms">
-        <div class="content-box">
-            <div class="terms-filter-box">
-                <br>
-                <div display="inline">
-                    <b>Выбрать семестр:</b>
-                    <select name="selectedId"
-                            onchange="document.getElementById('terms').submit();">
-                        <c:forEach items="${allTerm}" var="t">
-                            <option
-                                    <c:if test="${t eq term}">selected</c:if>
-                                    value="${t.id}">
-                                    ${t.name}</option>
-
-                        </c:forEach>
-                    </select>
-                </div>
-
-                <b>Длительность семестра: ${term.duration}</b>
-            </div>
-    <c:if test="${RoleId==1}">
-            <a href="termCreating.html" class="action-button"><img class="prefix-button" src="../resources/img/add.png"
-                                                                   width="18px" alt="">Создать семестр</a>
-            <a href="termModifying.html" class="action-button">Изменить текущий семестр</a>
-            <a href="" class="action-button"><img class="prefix-button" src="../resources/img/trash.png" width="18px"
-                                                  alt="">Удалить текущий семестр</a>
-    </c:if>
-            <h3>Список дисциплин семестра</h3>
+<div class="content-box">
+    <h1>Cеместры:</h1>
+        <form action="/term" method="get" id="termForm">
             <table class="students-table">
                 <tr>
-                    <th>Дисциплина</th>
+                    <td>
+                        <input type="hidden" name="idTerm" value="${termId.id}">
+                        <div class="grade-box">
+                            <div display="inline">
+                                <b>Выбрать семестр:</b>
+                                <select name="selectedId"
+                                        onchange="document.getElementById('termForm').submit();">
+                                    <c:forEach items="${allTerm}" var="t">
+                                        <option
+                                                <c:if test="${t eq term}">selected</c:if>
+                                                value="${t.id}">
+                                                ${t.name}</option>
+
+                                    </c:forEach>
+                                </select>
+                            </div>
+                            <b>Длительность семестра: ${term.duration}</b>
+                        </div>
+                    </td>
+
+
                 </tr>
-                <c:forEach items="${discipline}" var="t">
+            </table>
+            <table class="students-table">
+                <tr>
+                    <th>Дисциплины:</th>
+                </tr>
+                <c:forEach items="${termDiscipline}" var="t">
                     <tr>
-                        <td>${t.name}</td>
+                        <td>${t.disciplineName}</td>
                     </tr>
 
                 </c:forEach>
             </table>
+        </form>
 
-        </div>
-    </form>
-</c:if>
+
+</div>
 <footer>
     Copy 2022
 </footer>

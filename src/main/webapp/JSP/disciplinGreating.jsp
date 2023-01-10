@@ -17,7 +17,7 @@
   </div>
 
   <div class="title-box">
-    ${RoleName.firstName} ${RoleName.lastName} <br> ${RoleName.name}
+    ${FirstName} ${LastName} <br> ${RoleName}
   </div>
 
   <div class="title-login">

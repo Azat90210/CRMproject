@@ -17,12 +17,9 @@
         <h1>СИСТЕМА УПРАВЛЕНИЯ СТУДЕНТАМИ И ИХ УСПЕВАЕМОСТЬЮ</h1>
         <a href="/logout" class="gradient-button">Выйти</a>
     </div>
-
-
     <div class="title-box">
-        ${RoleName.firstName} ${RoleName.lastName} <br> ${RoleName.name}
+        ${FirstName} ${LastName} <br> ${RoleName}
     </div>
-
     <c:if  test="${isLogin !=1}">
         <div class="title-login">
             <a href="" class="gradient-button-leftside">Войти</a>
