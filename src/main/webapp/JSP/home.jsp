@@ -22,7 +22,7 @@
     </div>
     <c:if  test="${isLogin !=1}">
         <div class="title-login">
-            <a href="" class="gradient-button-leftside">Войти</a>
+            <a href="/registration" class="gradient-button-leftside">Войти</a>
             <a href="" class="gradient-button-rightside">Регистрация</a>
         </div>
     </c:if>

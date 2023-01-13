@@ -36,11 +36,6 @@ public class TermController extends HttpServlet {
         req.setAttribute("term", term);
         req.setAttribute("termDiscipline", termDiscipline);
 
-
-//        req.setAttribute("id_term", termDiscipline.getId());
-//        req.setAttribute("term", termDiscipline.getTermName());
-//        req.setAttribute("duration", termDiscipline.getDuration());
-//        req.setAttribute("discipline", termDiscipline.getDisciplineName());
         req.getRequestDispatcher("JSP/term.jsp").forward(req, resp);
     }
 

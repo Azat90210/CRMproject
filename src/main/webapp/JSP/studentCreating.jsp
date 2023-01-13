@@ -1,6 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -34,7 +33,7 @@
     <a href="/student" class="gradient-button">Студенты</a>
     <a href="/disciplin" class="gradient-button">Дисциплины</a>
     <a href="/term" class="gradient-button">Семестры</a>
-    <a href="" class="gradient-button">Контакты</a>
+    <a href="/contact" class="gradient-button">Контакты</a>
 </div>
 <div class="content-box">
     <h1>Добавление нового студента</h1>

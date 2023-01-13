@@ -1,5 +1,6 @@
 package Db;
 
+import constants.Conections;
 import entity.*;
 
 import java.sql.Connection;
@@ -15,7 +16,7 @@ public class DBManager implements IDBManager {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/crm_student_4", "root", "admin");
+                    Conections.CONECTIONS_URL, Conections.CONECTIONS_USER, Conections.CONECTIONS_PASSWORD);
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("select * from `student` where status = 1");
             while (rs.next()) {
@@ -42,7 +43,7 @@ public class DBManager implements IDBManager {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/crm_student_4", "root", "admin");
+                    Conections.CONECTIONS_URL, Conections.CONECTIONS_USER, Conections.CONECTIONS_PASSWORD);
             Statement stmt = con.createStatement();
             stmt.execute("INSERT INTO `new` (`name`, `text`,`status`) " +
                     "VALUES ('" + newsName + "','" + news + "', '1')");
@@ -58,7 +59,7 @@ public class DBManager implements IDBManager {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/crm_student_4", "root", "admin");
+                    Conections.CONECTIONS_URL, Conections.CONECTIONS_USER, Conections.CONECTIONS_PASSWORD);
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("select * from `new`");
             while (rs.next()) {
@@ -77,13 +78,12 @@ public class DBManager implements IDBManager {
     }
 
 
-
     @Override
     public void deleteNews(String ids) {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/crm_student_4", "root", "admin");
+                    Conections.CONECTIONS_URL, Conections.CONECTIONS_USER, Conections.CONECTIONS_PASSWORD);
             Statement stmt = con.createStatement();
             stmt.execute("UPDATE `new` SET `status` = '0' WHERE (`id` in(" + ids + "));");
             stmt.execute("DELETE from `new` WHERE (`id` in(" + ids + "));");
@@ -100,7 +100,7 @@ public class DBManager implements IDBManager {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/crm_student_4", "root", "admin");
+                    Conections.CONECTIONS_URL, Conections.CONECTIONS_USER, Conections.CONECTIONS_PASSWORD);
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("select * from `discipline` where status = 1");
             while (rs.next()) {
@@ -122,7 +122,7 @@ public class DBManager implements IDBManager {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/crm_student_4", "root", "admin");
+                    Conections.CONECTIONS_URL, Conections.CONECTIONS_USER, Conections.CONECTIONS_PASSWORD);
             Statement stmt = con.createStatement();
             stmt.execute("INSERT INTO `student` (`surname`, `name`, `group`, `status`, `data_enter`) " +
                     "VALUES ('" + lastName + "', '" + firstName + "', '" + groupName + "', '1',  '" + registrationDate + "')");
@@ -137,7 +137,7 @@ public class DBManager implements IDBManager {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/crm_student_4", "root", "admin");
+                    Conections.CONECTIONS_URL, Conections.CONECTIONS_USER, Conections.CONECTIONS_PASSWORD);
             Statement stmt = con.createStatement();
             stmt.execute("INSERT INTO `discipline` (`name`, `status`) " +
                     "VALUES ('" + disciplinName + "', '1')");
@@ -152,7 +152,7 @@ public class DBManager implements IDBManager {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/crm_student_4", "root", "admin");
+                    Conections.CONECTIONS_URL, Conections.CONECTIONS_USER, Conections.CONECTIONS_PASSWORD);
             Statement stmt = con.createStatement();
             stmt.execute("UPDATE `student` SET `status` = '0' WHERE (`id` in(" + ids + "));");
             stmt.execute("DELETE from `student` WHERE (`id` in(" + ids + "));");
@@ -167,7 +167,7 @@ public class DBManager implements IDBManager {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/crm_student_4", "root", "admin");
+                    Conections.CONECTIONS_URL, Conections.CONECTIONS_USER, Conections.CONECTIONS_PASSWORD);
             Statement stmt = con.createStatement();
             stmt.execute("UPDATE `discipline` SET `status` = '0' WHERE (`id` in(" + ids + "));");
             stmt.execute("DELETE from `discipline` WHERE (`id` in(" + ids + "));");
@@ -183,7 +183,7 @@ public class DBManager implements IDBManager {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/crm_student_4", "root", "admin");
+                    Conections.CONECTIONS_URL, Conections.CONECTIONS_USER, Conections.CONECTIONS_PASSWORD);
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("select * from `student` where `status` = 1 and `id` = " + ids);
             while (rs.next()) {
@@ -207,7 +207,7 @@ public class DBManager implements IDBManager {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/crm_student_4", "root", "admin");
+                    Conections.CONECTIONS_URL, Conections.CONECTIONS_USER, Conections.CONECTIONS_PASSWORD);
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("select distinct t.* from term t join term_discipline td on t.id = td.id_term");
             while (rs.next()) {
@@ -231,7 +231,7 @@ public class DBManager implements IDBManager {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/crm_student_4", "root", "admin");
+                    Conections.CONECTIONS_URL, Conections.CONECTIONS_USER, Conections.CONECTIONS_PASSWORD);
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("select distinct t.* from term t\n" +
                     "join term_discipline td on t.id = td.id_term\n" +
@@ -258,7 +258,7 @@ public class DBManager implements IDBManager {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/crm_student_4", "root", "admin");
+                    Conections.CONECTIONS_URL, Conections.CONECTIONS_USER, Conections.CONECTIONS_PASSWORD);
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("select * from `term` where `status` = 1 and `id` = " + ids);
             while (rs.next()) {
@@ -280,7 +280,7 @@ public class DBManager implements IDBManager {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/crm_student_4", "root", "admin");
+                    Conections.CONECTIONS_URL, Conections.CONECTIONS_USER, Conections.CONECTIONS_PASSWORD);
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("select distinct t.* from term t\n" +
                     "join term_discipline td on t.id = td.id_term;");
@@ -299,13 +299,14 @@ public class DBManager implements IDBManager {
         return res;
     }
 
+
     @Override
-    public ArrayList <TermDiscipline> getDisciplineByTerm(Term term, String idTerm) {
-        ArrayList <TermDiscipline> res = new ArrayList<>();
+    public ArrayList<TermDiscipline> getDisciplineByTerm(Term term, String idTerm) {
+        ArrayList<TermDiscipline> res = new ArrayList<>();
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/crm_student_4", "root", "admin");
+                    Conections.CONECTIONS_URL, Conections.CONECTIONS_USER, Conections.CONECTIONS_PASSWORD);
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("select distinct d.name as disciplineName from term_discipline td\n" +
                     "join term t on td.id_term = t.id\n" +
@@ -326,12 +327,12 @@ public class DBManager implements IDBManager {
 
 
     @Override
-    public ArrayList <DisciplineMark> getDisciplineMarkbyTerm(Term term, String ids) {
-        ArrayList <DisciplineMark> res = new ArrayList<>();
+    public ArrayList<DisciplineMark> getDisciplineMarkbyTerm(Term term, String ids) {
+        ArrayList<DisciplineMark> res = new ArrayList<>();
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/crm_student_4", "root", "admin");
+                    Conections.CONECTIONS_URL, Conections.CONECTIONS_USER, Conections.CONECTIONS_PASSWORD);
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("select distinct d.*, m.name as mark from term t\n" +
                     "join term_discipline td on t.id = td.id_term\n" +
@@ -363,14 +364,13 @@ public class DBManager implements IDBManager {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/crm_student_4", "root", "admin");
+                    Conections.CONECTIONS_URL, Conections.CONECTIONS_USER, Conections.CONECTIONS_PASSWORD);
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("select * from role where status = 1; ");
             while (rs.next()) {
                 Role t = new Role();
                 t.setId((rs.getInt("id")));
                 t.setName((rs.getString("name")));
-                t.setStatus((rs.getByte("status")));
                 res.add(t);
             }
             System.out.println(rs.getInt(1) + "  " + rs.getString(2) + "  " + rs.getString(3));
@@ -386,7 +386,7 @@ public class DBManager implements IDBManager {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/crm_student_4", "root", "admin");
+                    Conections.CONECTIONS_URL, Conections.CONECTIONS_USER, Conections.CONECTIONS_PASSWORD);
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("select * from user u \n" +
                     "join user_role ur on u.id = ur.id_user\n" +
@@ -407,20 +407,88 @@ public class DBManager implements IDBManager {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/crm_student_4", "root", "admin");
+                    Conections.CONECTIONS_URL, Conections.CONECTIONS_USER, Conections.CONECTIONS_PASSWORD);
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("select u.id id_us, firstName, lastName, r.id id_r, r.name from user u \n" +
                     "join user_role ur on u.id = ur.id_user\n" +
                     "join role r on r.id = ur.id_role\n" +
-                    "where login = '" + login + "'and r.id = '" + roleId+ "';");
+                    "where login = '" + login + "'and r.id = '" + roleId + "';");
             while (rs.next()) {
 
-                res.setId((rs.getInt("id_us")));
+                res.setIdUser((rs.getInt("id_us")));
                 res.setFirstName((rs.getString("firstName")));
                 res.setLastName((rs.getString("lastName")));
-                res.setId((rs.getInt("id_r")));
+                res.setIdRole((rs.getInt("id_r")));
                 res.setName((rs.getString("name")));
+            }
+            System.out.println(rs.getInt(1) + "  " + rs.getString(2) + "  " + rs.getString(3));
+            con.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return res;
+    }
 
+    @Override
+    public void userCreating(String login, String password, String lastName, String firstName, int idRole, int idUser) {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection(
+                    Conections.CONECTIONS_URL, Conections.CONECTIONS_USER, Conections.CONECTIONS_PASSWORD);
+            Statement stmt = con.createStatement();
+            stmt.execute("INSERT INTO `user` (`login`, `password`, `firstName`, `lastName`, `status`) " +
+                    "VALUES ('" + login + "', '" + password + "', '" + firstName + "', '" + lastName + "', '1');" +
+                    "INSERT INTO `crm_student_4`.`user_role` (`id_user`, `id_role`) VALUES ('" + idUser + "', '" + idRole + "');");
+            con.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    @Override
+    public void addUser(String login, String password, String lastName, String firstName) {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection(
+                    Conections.CONECTIONS_URL, Conections.CONECTIONS_USER, Conections.CONECTIONS_PASSWORD);
+            Statement stmt = con.createStatement();
+            stmt.execute("INSERT INTO `user` (`login`, `password`, `firstName`, `lastName`, `status`) " +
+                    "VALUES ('" + login + "', '" + password + "', '" + firstName + "', '" + lastName + "', '1');");
+            con.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    @Override
+    public void addIds(String roleId, String userId) {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection(
+                    Conections.CONECTIONS_URL, Conections.CONECTIONS_USER, Conections.CONECTIONS_PASSWORD);
+            Statement stmt = con.createStatement();
+            stmt.execute("INSERT INTO `crm_student_4`.`user_role` (`id_user`, `id_role`) VALUES ('" + userId + "', '" + roleId + "');");
+            con.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+
+    @Override
+    public User getUserId(String login) {
+        User res = new User();
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection(
+                    Conections.CONECTIONS_URL, Conections.CONECTIONS_USER, Conections.CONECTIONS_PASSWORD);
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("select id , login from user \n" +
+                                      "where login = '" + login + "';");
+            while (rs.next()) {
+
+                res.setId((rs.getInt("id")));
+                res.setLogin((rs.getString("login")));
 
             }
             System.out.println(rs.getInt(1) + "  " + rs.getString(2) + "  " + rs.getString(3));

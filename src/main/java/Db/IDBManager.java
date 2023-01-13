@@ -13,6 +13,7 @@ public interface IDBManager {
 
     void studentCreating(String lastName, String firstName, String groupName, String registrationDate);
 
+
     void disciplinCreating(String disciplinName);
 
     void deleteStudent(String ids);
@@ -35,7 +36,11 @@ public interface IDBManager {
     boolean isLogin (String login, String password, String idRole);
 
     UserRole getUser(String login, String roleId);
+    void userCreating(String login, String password, String lastName, String firstName, int idRole, int idUser);
+    void addUser(String login, String password, String lastName, String firstName);
+    void addIds(String roleId, String userId);
 
+    User getUserId(String login);
 }
 
 
