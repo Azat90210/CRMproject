@@ -498,6 +498,28 @@ public class DBManager implements IDBManager {
         }
         return res;
     }
+
+    @Override
+    public ArrayList<User> getLogins() {
+        ArrayList<User> res = new ArrayList<>();
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection(
+                    Conections.CONECTIONS_URL, Conections.CONECTIONS_USER, Conections.CONECTIONS_PASSWORD);
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("select `login` from `user`");
+            while (rs.next()) {
+                User t = new User();
+                t.setLogin((rs.getString("login")));
+                res.add(t);
+            }
+            System.out.println(rs.getInt(1) + "  " + rs.getString(2) + "  " + rs.getString(3));
+            con.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return res;
+    }
 }
 
 

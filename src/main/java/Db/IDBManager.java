@@ -41,6 +41,7 @@ public interface IDBManager {
     void addIds(String roleId, String userId);
 
     User getUserId(String login);
+    ArrayList<User> getLogins();
 }
 
 
