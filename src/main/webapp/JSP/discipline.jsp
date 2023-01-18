@@ -9,19 +9,21 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="../resources/styles/styles.css">
-    <script src="../resources/js/function.js"></script>
+    <script src="../resources/js/function.js" charset="UTF-8"></script>
 </head>
 <body>
 <div class="title-box">
     <div class="title-item">
         <h1>СИСТЕМА УПРАВЛЕНИЯ СТУДЕНТАМИ И ИХ УСПЕВАЕМОСТЬЮ</h1>
-        <a href="/logout" class="gradient-button">Выйти</a>
     </div>
-
-    <div class="title-box">
-        ${FirstName} ${LastName} <br> ${RoleName}
+    <div>
+        <div>
+            <a href="/logout" class="gradient-button">Выйти</a>
+        </div>
+        <div>
+            ${FirstName} ${LastName} <br> ${RoleName}
+        </div>
     </div>
-
     <c:if test="${isLogin !=1}">
         <div class="title-login">
             <a href="" class="gradient-button-leftside">Войти</a>
@@ -35,7 +37,7 @@
     <a href="/student" class="gradient-button">Студенты</a>
     <a href="/disciplin" class="gradient-button">Дисциплины</a>
     <a href="/term" class="gradient-button">Семестры</a>
-    <a href="" class="gradient-button">Контакты</a>
+    <a href="/contact" class="gradient-button">Контакты</a>
 </div>
 <div class="content-box">
     <c:if test="${RoleId==1}">
@@ -56,7 +58,9 @@
         <c:forEach items="${allDisciplin}" var="s">
             <tr>
                 <th>
+                    <c:if test="${RoleId==1}">
                     <input type="checkbox" value="${s.id}" name="idDisciplin">
+                    </c:if>
                 </th>
                 <td>${s.name}</td>
                 <td display="inline">

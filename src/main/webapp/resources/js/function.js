@@ -45,6 +45,38 @@ function progressStudent(){
     document.getElementById('progressStudentForm').submit();
 }
 
+
+function updateNews(){
+    var checkedCheckboxs = document.querySelectorAll('input[name=idNews]:checked')
+    if(checkedCheckboxs.length != 1){
+        alert("Выберите только одну новость!")
+        return;
+    }
+
+    // "1 2 5 7" - string
+    var ids = ""
+    for(var i = 0; i < checkedCheckboxs.length; i++){
+        ids = ids + checkedCheckboxs[i].value + ",";
+    }
+    ids = ids.substring(0, ids.length - 1);
+
+
+    document.getElementById("updateNewsHidden").value = ids;
+    document.getElementById('updateNewsForm').submit();
+}
+function updateStudent(){
+    var checkedCheckboxs = document.querySelectorAll('input[name=idStudent]:checked')
+    if(checkedCheckboxs.length != 1){
+        alert("Выберите только одного студента!")
+        return;
+    }
+    // "1 2 5 7" - string
+    var ids = checkedCheckboxs[0].value;
+
+
+    document.getElementById("updateStudentHidden").value = ids;
+    document.getElementById('updateStudentForm').submit();
+}
 function deleteNews(){
     var checkedCheckboxs = document.querySelectorAll('input[name=idNews]:checked')
     if(checkedCheckboxs.length == 0){

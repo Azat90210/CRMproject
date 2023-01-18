@@ -520,6 +520,44 @@ public class DBManager implements IDBManager {
         }
         return res;
     }
+
+    @Override
+    public void updateNews(String name, String text, String ids) {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection(
+                    Conections.CONECTIONS_URL, Conections.CONECTIONS_USER, Conections.CONECTIONS_PASSWORD);
+            Statement stmt = con.createStatement();
+            stmt.execute("UPDATE `crm_student_4`.`new` SET `name` = '" + name + "', `text` = '" + text +
+                    "' WHERE (`id` = '" + ids +"');");
+            con.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    @Override
+    public News getNews(String idNews) {
+        News s = new News();
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection(
+                    Conections.CONECTIONS_URL, Conections.CONECTIONS_USER, Conections.CONECTIONS_PASSWORD);
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("select * from `new` where `id` = '" + idNews + "';");
+            while (rs.next()) {
+                s.setId((rs.getInt("id")));
+                s.setName((rs.getString("name")));
+                s.setText((rs.getString("text")));
+                s.setStatus((rs.getByte("status")));
+            }
+            System.out.println(rs.getInt(1) + "  " + rs.getString(2) + "  " + rs.getString(3));
+            con.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return s;
+    }
 }
 
 

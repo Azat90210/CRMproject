@@ -42,6 +42,9 @@ public interface IDBManager {
 
     User getUserId(String login);
     ArrayList<User> getLogins();
+
+    void updateNews(String name, String text, String ids);
+    News getNews(String ids);
 }
 
 

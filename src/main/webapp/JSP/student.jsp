@@ -10,19 +10,21 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="../resources/styles/styles.css">
-    <script src="../resources/js/function.js"></script>
+    <script src="../resources/js/function.js" charset="UTF-8"></script>
 </head>
 <body>
 <div class="title-box">
     <div class="title-item">
         <h1>СИСТЕМА УПРАВЛЕНИЯ СТУДЕНТАМИ И ИХ УСПЕВАЕМОСТЬЮ</h1>
-        <a href="/logout" class="gradient-button">Выйти</a>
     </div>
-
-    <div class="title-box">
-        ${FirstName} ${LastName} <br> ${RoleName}
+    <div>
+        <div>
+            <a href="/logout" class="gradient-button">Выйти</a>
+        </div>
+        <div>
+            ${FirstName} ${LastName} <br> ${RoleName}
+        </div>
     </div>
-
     <c:if test="${isLogin !=1}">
         <div class="title-login">
             <a href="" class="gradient-button-leftside">Войти</a>
@@ -36,13 +38,13 @@
     <a href="/student" class="gradient-button">Студенты</a>
     <a href="/disciplin" class="gradient-button">Дисциплины</a>
     <a href="/term" class="gradient-button">Семестры</a>
-    <a href="" class="gradient-button">Контакты</a>
+    <a href="/contact" class="gradient-button">Контакты</a>
 </div>
 <div class="content-box">
 
-<c:if test="${RoleId!=3}">
+    <c:if test="${RoleId!=3}">
         <a href="#" class="action-button" onclick="progressStudent()">Посмотреть успеваемость</a>
-</c:if>
+    </c:if>
     <c:if test="${RoleId==1}">
         <a href="/student_creat" class="action-button"><img class="prefix-button" src="../resources/img/add.png"
                                                             width="18px" alt="">Добавить нового студента</a>
@@ -63,14 +65,16 @@
         <c:forEach items="${allStudents}" var="s">
             <tr>
                 <th>
-                    <input type="checkbox" value="${s.id}" name="idStudent">
+                    <c:if test="${RoleId==1}">
+                        <input type="checkbox" value="${s.id}" name="idStudent">
+                    </c:if>
                 </th>
                 <td>${s.surname}</td>
                 <td>${s.name}</td>
                 <td>${s.group}</td>
                 <td><fmt:formatDate pattern="dd/MM/yyyy" value="${s.data_enter}"/></td>
                 <td display="inline">
-                    <a class="editing-box-button" href=""><img src="../resources/img/pencil.png" width="18px"
+                    <a class="editing-box-button" href="/student_update" onclick="updateStudent()"><img src="../resources/img/pencil.png" width="18px"
                                                                alt=""></a>
                     <a class="trashing-box-button" href=""><img src="../resources/img/trash.png" width="18px"
                                                                 alt=""></a>
@@ -82,6 +86,9 @@
 </div>
 <form action="/student_delete" method="post" id="deleteStudentForm">
     <input type="hidden" id="deleteStudentHidden" name="idStudent">
+</form>
+<form action="/student_update" method="post" id="updateStudentForm">
+    <input type="hidden" id="updateStudentHidden" name="idStudent">
 </form>
 <form action="/student_progress" method="get" id="progressStudentForm">
     <input type="hidden" id="progressStudentHidden" name="idStudent">

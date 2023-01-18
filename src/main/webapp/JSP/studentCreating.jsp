@@ -13,18 +13,20 @@
 <div class="title-box">
     <div class="title-item">
         <h1>СИСТЕМА УПРАВЛЕНИЯ СТУДЕНТАМИ И ИХ УСПЕВАЕМОСТЬЮ</h1>
-        <a href="/logout" class="gradient-button">Выйти</a>
+    </div>
+    <div>
+        <div>
+            <a href="/logout" class="gradient-button">Выйти</a>
+        </div>
+        <div>
+            ${FirstName} ${LastName} <br> ${RoleName}
+        </div>
     </div>
 <c:if  test="${isLogin !=1}">
     <div class="title-login">
         <a href="" class="gradient-button-leftside">Войти</a>
         <a href="" class="gradient-button-rightside">Регистрация</a>
     </div>
-
-    <div class="title-box">
-            ${FirstName} ${LastName} <br> ${RoleName}
-    </div>
-
 </c:if>
 </div>
 <hr>
