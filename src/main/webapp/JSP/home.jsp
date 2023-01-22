@@ -21,7 +21,7 @@
             <a href="/logout" class="gradient-button">Выйти</a>
         </div>
         <div>
-           ${FirstName} ${LastName} <br> ${RoleName}
+            ${FirstName} ${LastName} <br> ${RoleName}
         </div>
 
     </div>
@@ -34,11 +34,16 @@
 </div>
 <hr>
 <div class="navigation-box">
-    <a href="/home" class="gradient-button">Главная</a>
-    <a href="/student" class="gradient-button">Студенты</a>
-    <a href="/disciplin" class="gradient-button">Дисциплины</a>
-    <a href="/term" class="gradient-button">Семестры</a>
-    <a href="/contact" class="gradient-button">Контакты</a>
+    <nav class="ui-helper-clearfix">
+        <ul class="ui-helper-clearfix">
+            <li><a href="/home" class="gradient-button">Главная</a></li>
+            <li><a href="/student" class="gradient-button">Студенты</a></li>
+            <li><a href="/disciplin" class="gradient-button">Дисциплины</a></li>
+            <li><a href="/term" class="gradient-button">Семестры</a></li>
+            <li><a href="/contact" class="gradient-button">Контакты</a></li>
+        </ul>
+        <a href="#" id="pull">Меню</a>
+    </nav>
 </div>
 <c:if test="${RoleId==1}">
     <div class="grade-box">

@@ -6,6 +6,61 @@ body {
     color: aliceblue;
 }
 
+nav {
+    height: 400px;
+    width: 100%;
+    font-size: 11pt;
+    position: relative;
+}
+nav ul {
+display: inline-block;
+width: 100 px;
+text-align: center;
+text-decoration: none;
+line-height: 40px;
+}
+
+@media only screen and (max-width : 480px){
+    nav{
+        border-bottom: 0;
+    }
+    nav ul{
+        display: none;
+        height: auto;
+    }
+    nav a#pull {
+        display: block;
+        width: 100%;
+        position: relative;
+    }
+    nav a#pull:after {
+       content: "";
+       width: 30px;
+       height: 30px;
+       display: inline-block;
+       position: absolute;
+       right: 15px;
+       top: 10px;
+    }
+}
+
+@media only screen and (max-width : 320px){
+    nav li{
+        display: block;
+        float: none;
+        width: 100%;
+    }
+    nav li a {
+        border-bottom: 1px solid #576979;
+    }
+}
+
+nav a {
+    padding: 0;
+    margin: 0 auto;
+    width: 600 px;
+    height: 40px;
+    }
 
 .title-box{
     margin: 20px 20px;
